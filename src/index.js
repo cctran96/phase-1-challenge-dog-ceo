@@ -19,16 +19,21 @@ document.addEventListener('DOMContentLoaded', function(){
     const breedUrl = 'https://dog.ceo/api/breeds/list/all'
     const breed = document.querySelector('#dog-breeds')
     const drop = document.querySelector('#breed-dropdown')
+
+    function lists(keys) {
+        const li = document.createElement('li')
+        li.innerText = keys
+        li.addEventListener('click', function() {
+            li.style.color = 'firebrick'
+        })
+        breed.appendChild(li)
+    }
+
     fetch(breedUrl)
     .then(resp => resp.json())
     .then(data => {
         Object.keys(data.message).forEach(keys => {
-            const li = document.createElement('li')
-            li.innerText = keys
-            li.addEventListener('click', function() {
-                li.style.color = 'firebrick'
-            })
-            breed.appendChild(li)
+            lists(keys)
 
             drop.addEventListener('change', function () {
                 breed.innerHTML = ''
@@ -36,48 +41,28 @@ document.addEventListener('DOMContentLoaded', function(){
                     case 'a':
                         Object.keys(data.message).forEach(keys => {
                             if (keys.startsWith('a')) {
-                                const li = document.createElement('li')
-                                li.innerText = keys
-                                li.addEventListener('click', function() {
-                                li.style.color = 'firebrick'
-                                })
-                                breed.appendChild(li)
+                                lists(keys)
                             }
                         })
                         break
                     case 'b':
                         Object.keys(data.message).forEach(keys => {
                             if (keys.startsWith('b')) {
-                                const li = document.createElement('li')
-                                li.innerText = keys
-                                li.addEventListener('click', function() {
-                                li.style.color = 'firebrick'
-                                })
-                                breed.appendChild(li)
+                                lists(keys)
                             }
                         })
                         break
                     case 'c':
                         Object.keys(data.message).forEach(keys => {
                             if (keys.startsWith('c')) {
-                                const li = document.createElement('li')
-                                li.innerText = keys
-                                li.addEventListener('click', function() {
-                                li.style.color = 'firebrick'
-                                })
-                                breed.appendChild(li)
+                                lists(keys)
                             }
                         })
                         break
                     default:
                         Object.keys(data.message).forEach(keys => {
                             if (keys.startsWith('d')) {
-                                const li = document.createElement('li')
-                                li.innerText = keys
-                                li.addEventListener('click', function() {
-                                li.style.color = 'firebrick'
-                                })
-                                breed.appendChild(li)
+                                lists(keys)
                             }
                         })
                 }
